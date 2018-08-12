@@ -30,6 +30,7 @@
   <javac srcdir="${src.dir}" destdir="${build.dir}">
     <classpath refid="class.path" />
   </javac>
+</target>
 
 
 <target name="jar" depends="compile">
