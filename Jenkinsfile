@@ -2,16 +2,17 @@ pipeline {
   agent any
 
   options {
-    buildsDiscarder(logRotation(numToKeepStr: '2', artifactNumToKeepStr: '1'))
+    buildDiscarder(logRotation(numToKeepStr: '2', artifactNumToKeepStr: '1'))
   }
 
   stages {
     stage('Unit Tests') {
       steps {
         sh 'ant -f test.xml -v'
-        junit 'reports/'
+        junit 'reports/result.xml'
       }
     }
+
     stage(build) {
       steps {
       sh 'ant -f build.xml -v'
