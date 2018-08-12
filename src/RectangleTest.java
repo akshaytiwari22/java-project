@@ -14,12 +14,12 @@ public class RectangleTest {
     assertEquals(myRectangle.getParameter(), 22);
   }
 
-  @test
+  @Test
   public void testLength() {
     assertEquals(myRectangle.length, 5);
   }
 
-  @test
+  @Test
   public void testWidth() {
     assertEquals(myRectangle.width, 6);
   }

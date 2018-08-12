@@ -5,8 +5,6 @@
 
 <property name="src.dir" location="src" />
 <property name="build.dir" location="bin" />
-<property name="dist.dir" location="dist" />
-<property name="docs.dir" location="docs" />
 <property name="report.dir" location="reports" />
 
 <path id="class.path">
@@ -35,7 +33,7 @@
 
 <target name="test" depends="clean, mkdir, compile">
   <junit printsummary="yes" fork="true">
-    <classpath refid="classpath" />
+    <classpath refid="class.path" />
     <test name="RectangleTest" todir="${report.dir}" outfile="result">
       <formatter type="xml" />
     </test>
@@ -43,7 +41,7 @@
 </target>
 
 
-<target name="main" depends="compile, jar">
+<target name="main" depends="test">
   <description>Main target</description>
 </target>
 
