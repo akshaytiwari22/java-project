@@ -3,9 +3,9 @@
     <property environment="env"/>
 
 
-<propert name="src.dir" location="src" />
-<propert name="build.dir" location="bin" />
-<propert name="dist.dir" location="dist" />
+<property name="src.dir" location="src" />
+<property name="build.dir" location="bin" />
+<property name="dist.dir" location="dist" />
 
 <path id="class.path">
   <pathelement location="./bin" />
