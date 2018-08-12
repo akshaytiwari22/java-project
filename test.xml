@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="Rectangle-Build" default="main" basedir=".">
+<project name="Rectangle-Test" default="main" basedir=".">
     <property environment="env"/>
 
 
@@ -7,40 +7,39 @@
 <property name="build.dir" location="bin" />
 <property name="dist.dir" location="dist" />
 <property name="docs.dir" location="docs" />
+<property name="report.dir" location="reports" />
 
 <path id="class.path">
   <pathelement location="./lib/junit-4.11.jar" />
-  <pathelement location="./bin" />
+  <pathelement location="${build.dir}">
 </path>
 
 
 <target name="clean">
   <delete dir="${build.dir}" />
-  <delete dir="${docs.dir}" />
-  <delete dir="${dist.dir}" />
+  <delete dir="${report.dir}" />
 </target>
 
 
-<target name="mkdir">
+<target name="mkdir" depends="clean">
   <mkdir dir="${build.dir}" />
-  <mkdir dir="${docs.dir}" />
-  <mkdir dir="${dist.dir}" />
+  <mkdir dir="${report.dir}" />
 </target>
 
 
-<target name="compile" depends="clean,mkdir">
+<target name="compile" depends="mkdir">
   <javac srcdir="${src.dir}" destdir="${build.dir}">
     <classpath refid="class.path" />
   </javac>
 </target>
 
-
-<target name="jar" depends="compile">
-  <jar destfile="${dist.dir}\rectangle.jar" basedir="${build.dir}">
-    <manifest>
-      <attribute name="Main-Class" value="Rectangulator" />
-    </manifest>
-  </jar>
+<target name="test" depends="clean, mkdir, compile">
+  <junit printsummary="yes" fork="true">
+    <classpath refid="classpath" />
+    <test name="RectangleTest" todir="${report.dir}" outfile="result">
+      <formatter type="xml" />
+    </test>
+  </junit>
 </target>
 
 
